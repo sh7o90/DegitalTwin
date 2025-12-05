@@ -1,0 +1,29 @@
+{
+  "name": "digital-twin-app-generator",
+  "description": "AI駆動型デジタルツインWebアプリジェネレーター - AIとの協働を通じて現実世界のモノのデジタルツインを作成し、専用のWebアプリケーションを自動生成",
+  "version": "1.0.0",
+  "type": "fullstack",
+  "frontend": {
+    "directory": "client",
+    "buildCommand": "npm install && npm run build",
+    "startCommand": "npm run dev",
+    "port": 3000,
+    "framework": "react",
+    "packageManager": "npm"
+  },
+  "backend": {
+    "directory": "server",
+    "startCommand": "npm install && npm run build && npm run start",
+    "buildCommand": "npm install && npm run build",
+    "port": 3001,
+    "runtime": "node",
+    "packageManager": "npm"
+  },
+  "env": {
+    "PORT": "3001",
+    "NODE_ENV": "production",
+    "DATABASE_PATH": "./database.sqlite"
+  },
+  "installCommand": "npm run install:all"
+}
+
