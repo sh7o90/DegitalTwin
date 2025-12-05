@@ -4,7 +4,7 @@ import { twinRoutes } from './twins';
 import { appRoutes } from './apps';
 
 export function setupRoutes(app: Express) {
-  app.get('/api/health', (req, res) => {
+  app.get('/api/health', (req: express.Request, res: express.Response) => {
     res.json({ status: 'ok', message: 'Digital Twin API is running' });
   });
 

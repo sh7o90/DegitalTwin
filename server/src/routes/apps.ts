@@ -24,7 +24,7 @@ function authenticateToken(req: Request, res: Response, next: NextFunction) {
 }
 
 // Generate app for a twin
-router.post('/generate/:twinId', authenticateToken, async (req, res) => {
+router.post('/generate/:twinId', authenticateToken, async (req: Request, res: Response) => {
   try {
     const { twinId } = req.params;
     const userId = (req as any).user.userId;
@@ -104,7 +104,7 @@ export const TwinDashboard = () => {
 });
 
 // Get generated app
-router.get('/:twinId', authenticateToken, async (req, res) => {
+router.get('/:twinId', authenticateToken, async (req: Request, res: Response) => {
   try {
     const { twinId } = req.params;
     const userId = (req as any).user.userId;

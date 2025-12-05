@@ -1,0 +1,33 @@
+services:
+  # バックエンドサービス
+  - type: web
+    name: digital-twin-api
+    env: node
+    region: tokyo
+    plan: free
+    nodeVersion: 18
+    buildCommand: cd server && npm ci && npm run build
+    startCommand: cd server && npm run start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3001
+      - key: DATABASE_PATH
+        value: ./database.sqlite
+    healthCheckPath: /api/health
+
+  # フロントエンドサービス
+  - type: static
+    name: digital-twin-frontend
+    env: static
+    region: tokyo
+    plan: free
+    buildCommand: cd client && npm ci && npm run build
+    staticPublishPath: client/dist
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: digital-twin-api
+          property: host

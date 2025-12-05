@@ -11,9 +11,20 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middleware
-// CORS設定: Lovable環境では同じドメインでホストされるため、必要に応じて調整
+// CORS設定: 複数のデプロイ環境に対応
+const allowedOrigins = process.env.FRONTEND_URL 
+  ? process.env.FRONTEND_URL.split(',')
+  : ['http://localhost:3000', '*'];
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL || '*',
+  origin: (origin, callback) => {
+    // 開発環境またはoriginが許可リストに含まれている場合
+    if (!origin || allowedOrigins.includes('*') || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true
 }));
 app.use(express.json());
@@ -32,7 +43,7 @@ setupRoutes(app);
 
 // 本番環境でSPAのルーティングをサポート
 if (process.env.NODE_ENV === 'production') {
-  app.get('*', (req, res) => {
+  app.get('*', (req: express.Request, res: express.Response) => {
     res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
   });
 }

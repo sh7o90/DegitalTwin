@@ -102,29 +102,47 @@ npm run dev
 - ✅ 基本的なダッシュボード
 - ✅ ユーザー認証
 
-## Lovableへのデプロイ
+## デプロイ
 
-このプロジェクトはLovableプラットフォームにデプロイできます。
+このプロジェクトは複数のプラットフォームにデプロイできます。
 
-### クイックデプロイ手順
+### 🎯 おすすめデプロイ先（Lovableがうまくいかない場合）
 
-1. プロジェクトをGitHubリポジトリにプッシュ
-2. Lovable（https://lovable.dev/）で「Import from GitHub」を選択
-3. リポジトリを選択してインポート
-4. 環境変数を設定（`JWT_SECRET`など）
-5. 「Deploy」をクリックしてデプロイ
+#### 1. **Render**（最もおすすめ）⭐
+- ✅ 無料プランあり
+- ✅ フルスタック対応
+- ✅ 簡単な設定（`render.yaml`で自動設定）
+- 📖 [クイックスタート](./QUICK_DEPLOY.md) | [詳細ガイド](./DEPLOY_RENDER.md)
 
-### 詳細ドキュメント
+#### 2. **Railway**
+- ✅ 無料クレジットあり（月$5分）
+- ✅ シンプルなUI
+- 📖 [Railwayデプロイガイド](./DEPLOY_RAILWAY.md)
 
-- **基本デプロイ手順**: [DEPLOYMENT.md](./DEPLOYMENT.md)
-- **詳細セットアップガイド**: [LOVABLE_SETUP.md](./LOVABLE_SETUP.md)
+#### 3. **Vercel（フロント）+ Railway/Render（バック）**
+- ✅ Vercelはフロントエンドに最適化
+- ✅ 高速CDN
+- 📖 [Vercelデプロイガイド](./DEPLOY_VERCEL.md)
+
+**🚀 5分でデプロイ**: [QUICK_DEPLOY.md](./QUICK_DEPLOY.md) を参照
 
 ### 必要な環境変数
 
-- `PORT`: `3001`（バックエンドポート）
+**バックエンド:**
+- `PORT`: `3001`
 - `JWT_SECRET`: 強力なランダム文字列（**必ず変更してください**）
 - `DATABASE_PATH`: `./database.sqlite`
 - `NODE_ENV`: `production`
+- `FRONTEND_URL`: フロントエンドのURL
+
+**フロントエンド:**
+- `VITE_API_URL`: バックエンドのURL
+
+### その他のデプロイオプション
+
+- **Lovable**: [LOVABLE_SETUP.md](./LOVABLE_SETUP.md)
+- **Fly.io**: 無料プランあり、Docker対応
+- **DigitalOcean App Platform**: 有料だが安定
 
 ## 今後の拡張
 

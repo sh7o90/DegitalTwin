@@ -24,7 +24,7 @@ function authenticateToken(req: Request, res: Response, next: NextFunction) {
 }
 
 // Get all twins for user
-router.get('/', authenticateToken, async (req, res) => {
+router.get('/', authenticateToken, async (req: Request, res: Response) => {
   try {
     const userId = (req as any).user.userId;
     const twins = await dbAll<any>(
@@ -39,7 +39,7 @@ router.get('/', authenticateToken, async (req, res) => {
 });
 
 // Get single twin
-router.get('/:id', authenticateToken, async (req, res) => {
+router.get('/:id', authenticateToken, async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const userId = (req as any).user.userId;
@@ -73,7 +73,7 @@ router.get('/:id', authenticateToken, async (req, res) => {
 });
 
 // Create new twin
-router.post('/', authenticateToken, async (req, res) => {
+router.post('/', authenticateToken, async (req: Request, res: Response) => {
   try {
     const userId = (req as any).user.userId;
     const { name, category, description, image_url, attributes, tracked_data, features } = req.body;
@@ -114,7 +114,7 @@ router.post('/', authenticateToken, async (req, res) => {
 });
 
 // Update twin
-router.put('/:id', authenticateToken, async (req, res) => {
+router.put('/:id', authenticateToken, async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const userId = (req as any).user.userId;
@@ -150,7 +150,7 @@ router.put('/:id', authenticateToken, async (req, res) => {
 });
 
 // Delete twin
-router.delete('/:id', authenticateToken, async (req, res) => {
+router.delete('/:id', authenticateToken, async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const userId = (req as any).user.userId;

@@ -92,7 +92,7 @@ export function setupDatabase() {
 export function dbRun(query: string, params: any[] = []): Promise<sqlite3.RunResult> {
   return new Promise((resolve, reject) => {
     const db = getDatabase();
-    db.run(query, params, function(err) {
+    db.run(query, params, function(err: Error | null) {
       if (err) reject(err);
       else resolve(this);
     });
@@ -102,7 +102,7 @@ export function dbRun(query: string, params: any[] = []): Promise<sqlite3.RunRes
 export function dbGet<T>(query: string, params: any[] = []): Promise<T | undefined> {
   return new Promise((resolve, reject) => {
     const db = getDatabase();
-    db.get(query, params, (err, row) => {
+    db.get(query, params, (err: Error | null, row: any) => {
       if (err) reject(err);
       else resolve(row as T);
     });
@@ -112,7 +112,7 @@ export function dbGet<T>(query: string, params: any[] = []): Promise<T | undefin
 export function dbAll<T>(query: string, params: any[] = []): Promise<T[]> {
   return new Promise((resolve, reject) => {
     const db = getDatabase();
-    db.all(query, params, (err, rows) => {
+    db.all(query, params, (err: Error | null, rows: any[]) => {
       if (err) reject(err);
       else resolve(rows as T[]);
     });
